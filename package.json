@@ -65,6 +65,8 @@
     "fluxible-plugin-fetchr": "^0.3.8",
     "fluxible-router": "^0.3.1",
     "gulp-sass-glob": "git+https://github.com/zoover/gulp-sass-glob.git",
+    "intl": "^1.0.1",
+    "intl-locales-supported": "git+https://github.com/zoover/intl-locales-supported.git",
     "json-loader": "^0.5.4",
     "jsonfile": "^2.2.3",
     "keymirror": "^0.1.1",
