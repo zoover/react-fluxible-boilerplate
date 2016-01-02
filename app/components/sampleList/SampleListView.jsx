@@ -4,18 +4,21 @@ import connectToStores from 'fluxible-addons-react/connectToStores';
 import Title from '../_common/Title.jsx';
 import Loader from '../_common/Loader.jsx';
 import SampleList from './SampleList.jsx';
-import {t} from '../../config/locale';
+import {I18n, Translate} from 'react-fluxible-i18n';
 
 let SampleListView = React.createClass({
   propTypes: {
     samples: React.PropTypes.array,
     loading: React.PropTypes.bool.isRequired
   },
+  contextTypes: {
+    getStore: React.PropTypes.func.isRequired
+  },
   render: function() {
     return (
       <div>
-        <Helmet title={t('samples.list')}/>
-        <Title>{t('samples.list')}</Title>
+        <Helmet title={I18n.t('samples.list')}/>
+        <Title><Translate value="samples.list"/></Title>
         <Loader isLoading={this.props.loading}>
           <SampleList samples={this.props.samples}/>
         </Loader>

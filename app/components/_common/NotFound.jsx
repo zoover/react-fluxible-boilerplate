@@ -1,13 +1,11 @@
 import React from '../../utils/safeReact';
-import Helmet from 'react-helmet';
-import {t} from '../../config/locale';
+import {Translate} from 'react-fluxible-i18n';
 
 const NotFound = React.createClass({
   render: function() {
     return (
       <div>
-        <p>{t('general.not_found')}</p>
-        <Helmet title={t('general.not_found')} />
+        <p><Translate value="general.not_found"/></p>
       </div>
     );
   }

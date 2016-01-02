@@ -1,6 +1,5 @@
 import React from '../../utils/safeReact';
-import Helmet from 'react-helmet';
-import {t} from '../../config/locale';
+import {Translate} from 'react-fluxible-i18n';
 
 const Loader = React.createClass({
 
@@ -17,8 +16,7 @@ const Loader = React.createClass({
     if (this.props.isLoading) {
       return (
         <div>
-          <p>{t('general.loading')}</p>
-          <Helmet title={t('general.loading')}/>
+          <p><Translate value="general.loading"/></p>
         </div>
       );
     }

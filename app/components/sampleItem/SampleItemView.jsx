@@ -5,7 +5,7 @@ import connectToStores from 'fluxible-addons-react/connectToStores';
 import Loader from '../_common/Loader.jsx';
 import NotFound from '../_common/NotFound.jsx';
 import Title from '../_common/Title.jsx';
-import {t} from '../../config/locale';
+import {Translate} from 'react-fluxible-i18n';
 
 let SampleItemView = React.createClass({
   propTypes: {
@@ -20,7 +20,7 @@ let SampleItemView = React.createClass({
       content = (
         <div>
           <Title>{this.props.sample.name}</Title>
-          <p>{t('samples.id')}: {this.props.sample.id}</p>
+          <p><Translate value="samples.id"/>: {this.props.sample.id}</p>
           <Helmet title={this.props.sample.name}/>
         </div>
       );
@@ -30,7 +30,7 @@ let SampleItemView = React.createClass({
         <Loader isLoading={this.props.loading}>
           {content}
         </Loader>
-        <NavLink routeName="sampleList">{t('samples.back_to_list')}</NavLink>
+        <NavLink routeName="sampleList"><Translate value="samples.back_to_list"/></NavLink>
       </div>
     );
   }

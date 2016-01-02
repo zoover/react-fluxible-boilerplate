@@ -10,8 +10,18 @@
   "engines": {
     "node": "5.1.1"
   },
-  "author": "",
+  "author": "Zoover",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/zoover/react-fluxible-boilerplate.git"
+  },
   "license": "ISC",
+  "keywords": [
+    "flux",
+    "fluxible",
+    "react",
+    "boilerplate"
+  ],
   "devDependencies": {
     "babel-eslint": "^4.1.4",
     "babel-loader": "^6.1.0",
@@ -60,19 +70,18 @@
     "babel-preset-react": "^6.0.15",
     "bootstrap": "git+https://github.com/twbs/bootstrap.git#v4-dev",
     "express": "^4.13.3",
-    "fluxible": "^1.0.1",
+    "fluxible": "^1.0.3",
     "fluxible-addons-react": "^0.2.0",
     "fluxible-plugin-fetchr": "^0.3.8",
     "fluxible-router": "^0.3.1",
     "gulp-sass-glob": "git+https://github.com/zoover/gulp-sass-glob.git",
-    "intl": "^1.0.1",
-    "intl-locales-supported": "git+https://github.com/zoover/intl-locales-supported.git",
     "json-loader": "^0.5.4",
     "jsonfile": "^2.2.3",
     "keymirror": "^0.1.1",
     "moment": "^2.10.6",
     "react": "^0.14.2",
     "react-dom": "^0.14.2",
+    "react-fluxible-i18n": "0.0.2",
     "react-helmet": "^2.2.0",
     "react-safe-render": "^1.0.4",
     "serialize-javascript": "^1.1.2",

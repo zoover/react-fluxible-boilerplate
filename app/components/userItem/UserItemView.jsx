@@ -5,7 +5,7 @@ import connectToStores from 'fluxible-addons-react/connectToStores';
 import Loader from '../_common/Loader.jsx';
 import NotFound from '../_common/NotFound.jsx';
 import Title from '../_common/Title.jsx';
-import {t} from '../../config/locale';
+import {Translate} from 'react-fluxible-i18n';
 
 let UserItemView = React.createClass({
   propTypes: {
@@ -20,7 +20,7 @@ let UserItemView = React.createClass({
       content = (
         <div>
           <Title>{this.props.user.login}</Title>
-          <p>{t('users.id')}: {this.props.user.id}</p>
+          <p><Translate value="users.id"/>: {this.props.user.id}</p>
           <Helmet title={this.props.user.login}/>
         </div>
       );
@@ -30,7 +30,7 @@ let UserItemView = React.createClass({
         <Loader isLoading={this.props.loading}>
           {content}
         </Loader>
-        <NavLink routeName="userList">{t('users.back_to_list')}</NavLink>
+        <NavLink routeName="userList"><Translate value="users.back_to_list"/></NavLink>
       </div>
     );
   }
