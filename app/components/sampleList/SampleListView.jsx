@@ -11,9 +11,6 @@ let SampleListView = React.createClass({
     samples: React.PropTypes.array,
     loading: React.PropTypes.bool.isRequired
   },
-  contextTypes: {
-    getStore: React.PropTypes.func.isRequired
-  },
   render: function() {
     return (
       <div>
