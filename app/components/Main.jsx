@@ -22,7 +22,6 @@ let Main = React.createClass({
   render: function() {
     const Handler = this.props.currentRoute.get('handler');
     const params = this.props.currentRoute.get('params').toJS();
-    I18n.setContext(this.context);
     return (
       <Container>
         <Row>
