@@ -1,6 +1,6 @@
 import React from '../../utils/safeReact';
 import Helmet from 'react-helmet';
-import connectToStores from 'fluxible-addons-react/connectToStores';
+import {connectToStores} from 'react-fluxible-utils';
 import Title from '../_common/Title.jsx';
 import Loader from '../_common/Loader.jsx';
 import SampleList from './SampleList.jsx';
