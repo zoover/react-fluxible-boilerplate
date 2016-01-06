@@ -6,6 +6,7 @@ import {ShallowComponent} from '../../../../utils/storeMocks';
 
 import SampleListView from '../../../../../app/components/sampleList/SampleListView.jsx';
 import Loader from '../../../../../app/components/_common/Loader.jsx';
+import Title from '../../../../../app/components/_common/Title.jsx';
 import SampleStore from '../../../../../app/stores/sampleStore';
 import SampleList from '../../../../../app/components/sampleList/SampleList.jsx';
 
@@ -14,6 +15,12 @@ describe('SampleListView Component', function() {
     {'id': 1, 'name': 'firstItem'},
     {'id': 2, 'name': 'secondItem'}
   ];
+
+  let component = null;
+
+  beforeEach(function() {
+    component = new ShallowComponent(SampleListView).withProps({isLoading: false});
+  });
 
   describe('connected component to stores', function() {
     beforeEach(function() {
@@ -25,46 +32,31 @@ describe('SampleListView Component', function() {
     });
 
     it('should map the store results to the correct props', function() {
-      const sut = new ShallowComponent(SampleListView)
-        .withProps({loading: false})
-        .withStore(SampleStore)
-        .get(SampleListView.originalComponent);
+      const sut = component.withStore(SampleStore).getSelf();
 
       expect(sut).to.have.deep.property('props.samples').that.deep.equals(sampleData);
     });
   });
 
   describe('composition', function() {
-    it('should have Loader component', function() {
-      const loader = new ShallowComponent(SampleListView.originalComponent)
-        .withProps({samples: []})
-        .get(Loader);
-
-      expect(loader).to.be.ok;
+    it('should have Title and Loader component', function() {
+      expect(component.get(Title)).to.be.ok;
+      expect(component.get(Loader)).to.be.ok;
     });
 
-    it('should pass loading property to Loader module (true)', function() {
-      const loader = new ShallowComponent(SampleListView.originalComponent)
-        .withProps({samples: [], loading: true})
-        .get(Loader);
-
+    it('should pass loading property to Loader module', function() {
+      const loader = component.withProps({isLoading: true}).get(Loader);
       expect(loader).to.have.deep.property('props.isLoading', true);
-    });
 
-    it('should pass loading property to Loader module  (false)', function() {
-      const loader = new ShallowComponent(SampleListView.originalComponent)
-        .withProps({samples: [], loading: false})
-        .get(Loader);
-      expect(loader).to.have.deep.property('props.isLoading', false);
+      const loader2 = component.withProps({isLoading: false}).get(Loader);
+      expect(loader2).to.have.deep.property('props.isLoading', false);
     });
 
     it('should pass samples to List items props', function() {
-      const sampleList = new ShallowComponent(SampleListView.originalComponent)
-        .withProps({samples: sampleData})
-        .get(SampleList);
+      const sampleList = component.withProps({isLoading: false, samples: sampleData}).get(SampleList);
 
       expect(sampleList).to.be.ok;
-      expect(sampleList).to.have.deep.property('props.items').equals(sampleData);
+      expect(sampleList).to.have.deep.property('props.samples').that.deep.equals(sampleData);
     });
   });
 });

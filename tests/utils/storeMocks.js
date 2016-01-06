@@ -41,14 +41,18 @@ class ShallowComponent {
     return this;
   }
 
+  getSelf(){
+    const bla = this.componentContext.stores ? this.component : (this.component.original ? this.component.original : this.component);
+    this.renderer.render(React.createElement(bla, this.props), createMockComponentContext(this.componentContext));
+    return this.renderer.getRenderOutput();
+  }
+
   get(childComponent) {
-    this.renderer.render(React.createElement(this.component, this.props), createMockComponentContext(this.componentContext));
-    return ShallowTestUtils.findWithType(this.renderer.getRenderOutput(), childComponent);
+    return ShallowTestUtils.findWithType(this.getSelf(), childComponent);
   }
 
   getAll(childComponent) {
-    this.renderer.render(React.createElement(this.component, this.props), createMockComponentContext(this.componentContext));
-    return ShallowTestUtils.findAllWithType(this.renderer.getRenderOutput(), childComponent);
+    return ShallowTestUtils.findAllWithType(this.getSelf(), childComponent);
   }
 }
 
