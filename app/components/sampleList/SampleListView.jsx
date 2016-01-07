@@ -1,4 +1,4 @@
-import React from '../../utils/safeReact';
+import {ReactSafeRender as React} from 'react-fluxible-utils';
 import Helmet from 'react-helmet';
 import {connectToStores} from 'react-fluxible-utils';
 import Title from '../_common/Title.jsx';
@@ -14,7 +14,7 @@ let SampleListView = React.createClass({
   render: function() {
     return (
       <div>
-        <Helmet title={'ah'/* I18n.t('samples.list') */}/>
+        <Helmet title={I18n.t('samples.list')}/>
         <Title><Translate value="samples.list"/></Title>
         <Loader isLoading={this.props.isLoading}>
           <SampleList samples={this.props.samples}/>

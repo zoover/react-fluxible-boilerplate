@@ -1,6 +1,6 @@
 import React from 'react';
 import { expect } from 'chai';
-import {ShallowComponent} from '../../../../utils/storeMocks';
+import {ShallowComponent} from 'react-fluxible-utils';
 
 import SampleList from '../../../../../app/components/sampleList/SampleList.jsx';
 import ListItem from '../../../../../app/components/_common/ListItem.jsx';

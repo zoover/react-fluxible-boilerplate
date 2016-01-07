@@ -1,6 +1,6 @@
-import React from '../../utils/safeReact';
+import {ReactSafeRender as React} from 'react-fluxible-utils';
 import Helmet from 'react-helmet';
-import connectToStores from 'fluxible-addons-react/connectToStores';
+import {connectToStores} from 'react-fluxible-utils';
 import Title from '../_common/Title.jsx';
 import Loader from '../_common/Loader.jsx';
 import UserList from './UserList.jsx';
@@ -9,14 +9,14 @@ import {I18n, Translate} from 'react-fluxible-i18n';
 let UserListView = React.createClass({
   propTypes: {
     users: React.PropTypes.array,
-    loading: React.PropTypes.bool.isRequired
+    isLoading: React.PropTypes.bool.isRequired
   },
   render: function() {
     return (
       <div>
         <Helmet title={I18n.t('users.list')}/>
         <Title><Translate value="users.list"/></Title>
-        <Loader isLoading={this.props.loading}>
+        <Loader isLoading={this.props.isLoading}>
           <UserList users={this.props.users}/>
         </Loader>
       </div>
@@ -24,9 +24,8 @@ let UserListView = React.createClass({
   }
 });
 
-UserListView = connectToStores(UserListView, ['UserStore'], (context, props) => ({
-  users: context.getStore('UserStore').getAll(),
-  loading: props.isLoading
+UserListView = connectToStores(UserListView, ['UserStore'], (context) => ({
+  users: context.getStore('UserStore').getAll()
 }));
 
 export default UserListView;

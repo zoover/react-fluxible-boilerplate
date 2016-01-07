@@ -1,4 +1,4 @@
-import React from '../../utils/safeReact';
+import {ReactSafeRender as React} from 'react-fluxible-utils';
 import ListItem from '../_common/ListItem.jsx';
 
 const SampleList = React.createClass({

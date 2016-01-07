@@ -1,4 +1,4 @@
-import React from '../utils/safeReact';
+import {ReactSafeRender as React} from 'react-fluxible-utils';
 import Helmet from 'react-helmet';
 import {NavLink} from 'fluxible-router';
 import {handleHistory} from 'fluxible-router';

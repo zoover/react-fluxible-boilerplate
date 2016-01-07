@@ -1,7 +1,7 @@
-import React from '../../utils/safeReact';
+import {ReactSafeRender as React} from 'react-fluxible-utils';
 import Helmet from 'react-helmet';
 import {NavLink} from 'fluxible-router';
-import connectToStores from 'fluxible-addons-react/connectToStores';
+import {connectToStores} from 'react-fluxible-utils';
 import Loader from '../_common/Loader.jsx';
 import NotFound from '../_common/NotFound.jsx';
 import Title from '../_common/Title.jsx';
@@ -10,7 +10,7 @@ import {Translate} from 'react-fluxible-i18n';
 let SampleItemView = React.createClass({
   propTypes: {
     sample: React.PropTypes.object,
-    loading: React.PropTypes.bool.isRequired
+    isLoading: React.PropTypes.bool.isRequired
   },
   render: function() {
     let content;
@@ -27,7 +27,7 @@ let SampleItemView = React.createClass({
     }
     return (
       <div>
-        <Loader isLoading={this.props.loading}>
+        <Loader isLoading={this.props.isLoading}>
           {content}
         </Loader>
         <NavLink routeName="sampleList"><Translate value="samples.back_to_list"/></NavLink>
@@ -37,8 +37,7 @@ let SampleItemView = React.createClass({
 });
 
 SampleItemView = connectToStores(SampleItemView, ['SampleStore'], (context, props) => ({
-  sample: context.getStore('SampleStore').getById(parseInt(props.id, 10)),
-  loading: props.isLoading
+  sample: context.getStore('SampleStore').getById(parseInt(props.id, 10))
 }));
 
 export default SampleItemView;

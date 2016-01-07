@@ -2,7 +2,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { expect } from 'chai';
 import sinon from 'sinon';
-import {ShallowComponent} from '../../../../utils/storeMocks';
+import {ShallowComponent} from 'react-fluxible-utils';
 
 import SampleListView from '../../../../../app/components/sampleList/SampleListView.jsx';
 import Loader from '../../../../../app/components/_common/Loader.jsx';

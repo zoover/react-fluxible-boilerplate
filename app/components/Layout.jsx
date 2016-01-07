@@ -1,4 +1,4 @@
-import React from '../utils/safeReact';
+import {ReactSafeRender as React} from 'react-fluxible-utils';
 import Helmet from 'react-helmet';
 
 const Layout = React.createClass({

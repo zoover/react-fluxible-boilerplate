@@ -1,7 +1,7 @@
-import React from '../../utils/safeReact';
+import {ReactSafeRender as React} from 'react-fluxible-utils';
 import Helmet from 'react-helmet';
 import {NavLink} from 'fluxible-router';
-import connectToStores from 'fluxible-addons-react/connectToStores';
+import {connectToStores} from 'react-fluxible-utils';
 import Loader from '../_common/Loader.jsx';
 import NotFound from '../_common/NotFound.jsx';
 import Title from '../_common/Title.jsx';
@@ -10,7 +10,7 @@ import {Translate} from 'react-fluxible-i18n';
 let UserItemView = React.createClass({
   propTypes: {
     user: React.PropTypes.object,
-    loading: React.PropTypes.bool.isRequired
+    isLoading: React.PropTypes.bool.isRequired
   },
   render: function() {
     let content;
@@ -27,7 +27,7 @@ let UserItemView = React.createClass({
     }
     return (
       <div>
-        <Loader isLoading={this.props.loading}>
+        <Loader isLoading={this.props.isLoading}>
           {content}
         </Loader>
         <NavLink routeName="userList"><Translate value="users.back_to_list"/></NavLink>
@@ -37,8 +37,7 @@ let UserItemView = React.createClass({
 });
 
 UserItemView = connectToStores(UserItemView, ['UserStore'], (context, props) => ({
-  user: context.getStore('UserStore').getById(props.id),
-  loading: props.isLoading
+  user: context.getStore('UserStore').getById(props.id)
 }));
 
 export default UserItemView;
