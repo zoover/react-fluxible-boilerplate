@@ -80,7 +80,7 @@
     "react": "^0.14.2",
     "react-dom": "^0.14.2",
     "react-fluxible-i18n": "^0.1.0",
-    "react-fluxible-utils": "0.0.4",
+    "react-fluxible-utils": "0.0.5",
     "react-helmet": "^2.2.0",
     "serialize-javascript": "^1.1.2",
     "superagent": "^1.4.0"
