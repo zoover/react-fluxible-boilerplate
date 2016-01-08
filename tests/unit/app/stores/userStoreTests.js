@@ -1,7 +1,7 @@
 import {expect} from 'chai';
-import UserStore from '../../app/stores/userStore';
-import {MockDispatcher} from '../utils/storeMocks';
-import events from '../../app/config/events';
+import UserStore from '../../../../app/stores/userStore';
+import {MockDispatcher} from 'react-fluxible-utils';
+import events from '../../../../app/config/events';
 import sinon from 'sinon';
 
 describe('userStore', function() {

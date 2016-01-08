@@ -11,6 +11,7 @@ module.exports = {
     favicon_src: 'app/assets/images/favicon.png',
     layout_file: 'app/components/Layout.jsx',
     production_config_file: './production.json',
-    build_dest: './build/'
+    build_dest: './build/',
+    test_src: 'tests/**/*.js'
   },
 };

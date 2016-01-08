@@ -1,4 +1,4 @@
-import React from '../../utils/safeReact';
+import {ReactSafeRender as React} from 'react-fluxible-utils';
 
 const Row = React.createClass({
 

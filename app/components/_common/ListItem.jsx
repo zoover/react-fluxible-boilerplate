@@ -1,4 +1,4 @@
-import React from '../../utils/safeReact';
+import {ReactSafeRender as React} from 'react-fluxible-utils';
 import {NavLink} from 'fluxible-router';
 
 const ListItem = React.createClass({

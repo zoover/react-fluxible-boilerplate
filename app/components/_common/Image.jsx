@@ -1,5 +1,5 @@
-import React from '../../utils/safeReact';
-import connectToStores from 'fluxible-addons-react/connectToStores';
+import {ReactSafeRender as React} from 'react-fluxible-utils';
+import {connectToStores} from 'react-fluxible-utils';
 
 let Image = React.createClass({
   propTypes: {
