@@ -21,7 +21,7 @@ let gzip = false;
 
 if (server.get('env') === 'testing' || server.get('env') === 'development') {
   server.use(assetsBasePath, express.static('./build'));
-  server.use(require('connect-livereload')());
+  server.use(require('connect-livereload')({port: require('../tasks/config').live_reload_port}));
 } else {
   // production mode
   const file = './production.json';
