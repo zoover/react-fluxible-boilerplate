@@ -1,13 +1,13 @@
 import React from 'react';
-import Helmet from 'react-helmet';
 import { expect } from 'chai';
 import sinon from 'sinon';
 import {ShallowComponent} from 'react-fluxible-utils';
 
-import SampleListView from '../../../../app/components/sampleList/SampleListView.jsx';
+import ViewToTest from '../../../../app/components/sampleList/SampleListView.jsx';
+import Store from '../../../../app/stores/sampleStore';
+
 import Loader from '../../../../app/components/_common/Loader.jsx';
 import Title from '../../../../app/components/_common/Title.jsx';
-import SampleStore from '../../../../app/stores/sampleStore';
 import SampleList from '../../../../app/components/sampleList/SampleList.jsx';
 
 describe('SampleListView Component', function() {
@@ -15,36 +15,39 @@ describe('SampleListView Component', function() {
     {'id': 1, 'name': 'firstItem'},
     {'id': 2, 'name': 'secondItem'}
   ];
-
+  const defaultProps = {isLoading: false};
+  
   let component = null;
 
   beforeEach(function() {
-    component = new ShallowComponent(SampleListView).withProps({isLoading: false});
+    component = new ShallowComponent(ViewToTest).withProps(defaultProps);
   });
 
-  describe('connected component to stores', function() {
-    beforeEach(function() {
-      sinon.stub(SampleStore.prototype, 'getAll').returns(sampleData);
-    });
-
-    afterEach(function() {
-      SampleStore.prototype.getAll.restore();
-    });
-
+  describe('connection to store', function() {
     it('should map the store results to the correct props', function() {
-      const sut = component.withStore(SampleStore).getSelf();
-
+      sinon.stub(Store.prototype, 'getAll').returns(sampleData);
+      const sut = component.withStore(Store).getSelf();
       expect(sut).to.have.deep.property('props.samples').that.deep.equals(sampleData);
+      Store.prototype.getAll.restore();
     });
   });
 
   describe('composition', function() {
-    it('should have Title and Loader component', function() {
+    it('should have Title component', function() {
       expect(component.get(Title)).to.be.ok;
+    });
+
+    it('should have Loader component', function() {
       expect(component.get(Loader)).to.be.ok;
     });
 
-    it('should pass loading property to Loader module', function() {
+    it('should have SampleList component', function() {
+      expect(component.get(SampleList)).to.be.ok;
+    });
+  });
+  
+  describe('prop passing', function() {
+    it('should pass loading property to Loader component', function() {
       const loader = component.withProps({isLoading: true}).get(Loader);
       expect(loader).to.have.deep.property('props.isLoading', true);
 
@@ -52,10 +55,8 @@ describe('SampleListView Component', function() {
       expect(loader2).to.have.deep.property('props.isLoading', false);
     });
 
-    it('should pass samples to List items props', function() {
+    it('should pass samples to SampleList component', function() {
       const sampleList = component.withProps({isLoading: false, samples: sampleData}).get(SampleList);
-
-      expect(sampleList).to.be.ok;
       expect(sampleList).to.have.deep.property('props.samples').that.deep.equals(sampleData);
     });
   });

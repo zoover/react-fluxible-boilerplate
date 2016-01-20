@@ -6,7 +6,10 @@ import sinon from 'sinon';
 describe('userStore', function() {
   let store;
   let dispatcherMock;
-  const sampleData = [{id: 1, login: 'test'}];
+  const sampleData = [
+    {id: 1, login: 'test'},
+    {id: 2, login: 'the second user'}
+  ];
 
   beforeEach(function() {
     dispatcherMock = new MockDispatcher(StoreToTest);
@@ -19,39 +22,30 @@ describe('userStore', function() {
 
   describe('getAll', function() {
     it('should return empty array after store initialization', function() {
-      // act
-      const result = store.getAll();
-
-      // assert
-      expect(result).to.be.empty;
+      expect(store.getAll()).to.be.empty;
     });
+    
+    it('should return all users after user items loaded', function() {
+      dispatcherMock.dispatch('USER_ITEM_LOADED', {user: sampleData[0]});
+      dispatcherMock.dispatch('USER_ITEM_LOADED', {user: sampleData[1]});
+      expect(store.getAll()).to.deep.equal(sampleData);
+    });    
 
-    it('should return correct user if userId found', function() {
-      // arrange
-      ;
-      const existingId = 'test';
-      dispatcherMock.dispatch('USER_LIST_LOADED', {users: sampleData});
-
-      // act
-      const result = store.getById(existingId);
-
-      expect(result).to.eql(sampleData[0]);
+    it('should return all users after user lists loaded', function() {
+      dispatcherMock.dispatch('USER_LIST_LOADED', {users: [sampleData[0]]});
+      dispatcherMock.dispatch('USER_LIST_LOADED', {users: [sampleData[1]]});
+      expect(store.getAll()).to.deep.equal(sampleData);
     });
   });
 
-  describe('handle USER_LIST_LOADED', function() {
-    it('should return combined arrays on successive dispatch', function() {
-      // arrange
-      const firstUserArray = [{id: 1, login: 'test'}];
-      const secondUserArray = [{id: 2, login: 'the second user'}];
-
-      // act
-      dispatcherMock.dispatch('USER_LIST_LOADED', {users: firstUserArray});
-      dispatcherMock.dispatch('USER_LIST_LOADED', {users: secondUserArray});
-      const result = store.getAll();
-
-      // assert
-      expect(result).to.eql(firstUserArray.concat(secondUserArray));
+  describe('getById', function() {
+     it('should return undefined if user not found', function() {
+      expect(store.getById('test')).to.be.undefined;
+    });
+    
+    it('should return correct user if userId found', function() {
+      dispatcherMock.dispatch('USER_LIST_LOADED', {users: sampleData});
+      expect(store.getById('test')).to.eql(sampleData[0]);
     });
   });
 

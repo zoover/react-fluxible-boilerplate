@@ -2,30 +2,38 @@ import React from 'react';
 import { expect } from 'chai';
 import {ShallowComponent} from 'react-fluxible-utils';
 
-import SampleList from '../../../../app/components/sampleList/SampleList.jsx';
+import ViewToTest from '../../../../app/components/sampleList/SampleList.jsx';
+
 import ListItem from '../../../../app/components/_common/ListItem.jsx';
 
-let component = null;
-
 describe('SampleList Component', function() {
-  
+  const sampleData = [
+    {'id': 1, 'name': 'firstItem'},
+    {'id': 2, 'name': 'secondItem'}
+  ];
+  const defaultProps = {samples: []};
+
+  let component = null;
+
   beforeEach(function() {
-    component = new ShallowComponent(SampleList);
+    component = new ShallowComponent(ViewToTest).withProps(defaultProps);
   });
   
-  it('should have no ListItem children with no items', function() {
-    const renderedItems = component.withProps({samples: []}).getAll(ListItem);
-    expect(renderedItems).to.have.length(0);
+  describe('composition', function() {
+    it('should have ul component', function() {
+      expect(component.get('ul')).to.be.ok;
+    });
   });
+  
+  describe('props passing', function() {
+    it('should have no ListItem children with no items', function() {
+      const renderedItems = component.withProps({samples: []}).getAll(ListItem);
+      expect(renderedItems).to.have.length(0);
+    });
 
-  it('should have two ListItem children with two samples ', function() {
-    const samples = [
-      {'id': 1, 'name': 'firstItem'},
-      {'id': 2, 'name': 'secondItem'}
-    ];
-
-    const renderedItems = component.withProps({samples: samples}).getAll(ListItem);
-    expect(renderedItems).to.have.length(2);
+    it('should have two ListItem children with two samples ', function() {
+      const renderedItems = component.withProps({samples: sampleData}).getAll(ListItem);
+      expect(renderedItems).to.have.length(sampleData.length);
+    });
   });
-
 });
