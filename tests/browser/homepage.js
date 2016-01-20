@@ -6,9 +6,7 @@ describe('User visits home page', function() {
   before(function(done) {
     browser.visit('/', done);
   });
-  // it('should do stuff', function() {
-  //   browser.assert.text('h1', 'Sample List')
-  // });
+  it('should be successful', function() {
+    browser.assert.success();
+  });
 });
-
-//TODO find out how to simulate clicks hrefs etc

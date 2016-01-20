@@ -1,26 +1,27 @@
 import {expect} from 'chai';
-import UserStore from '../../../../app/stores/userStore';
+import StoreToTest from '../../../app/stores/userStore';
 import {MockDispatcher} from 'react-fluxible-utils';
-import events from '../../../../app/config/events';
+import events from '../../../app/config/events';
 import sinon from 'sinon';
 
 describe('userStore', function() {
-  let sut;  // sut = SystemUnderTest
+  let store;
   let dispatcherMock;
+  const sampleData = [{id: 1, login: 'test'}];
 
   beforeEach(function() {
-    dispatcherMock = new MockDispatcher(UserStore);
-    sut = dispatcherMock.getStore();
+    dispatcherMock = new MockDispatcher(StoreToTest);
+    store = dispatcherMock.getStore();
   });
 
   afterEach(function() {
-    sut = undefined;
+    store = undefined;
   });
 
   describe('getAll', function() {
     it('should return empty array after store initialization', function() {
       // act
-      const result = sut.getAll();
+      const result = store.getAll();
 
       // assert
       expect(result).to.be.empty;
@@ -28,14 +29,14 @@ describe('userStore', function() {
 
     it('should return correct user if userId found', function() {
       // arrange
-      const testUserArray = [{id: 1, login: 'test'}];
+      ;
       const existingId = 'test';
-      dispatcherMock.dispatch(events.USER_LIST_LOADED, {users: testUserArray});
+      dispatcherMock.dispatch(events.USER_LIST_LOADED, {users: sampleData});
 
       // act
-      const result = sut.getById(existingId);
+      const result = store.getById(existingId);
 
-      expect(result).to.eql(testUserArray[0]);
+      expect(result).to.eql(sampleData[0]);
     });
   });
 
@@ -48,34 +49,26 @@ describe('userStore', function() {
       // act
       dispatcherMock.dispatch(events.USER_LIST_LOADED, {users: firstUserArray});
       dispatcherMock.dispatch(events.USER_LIST_LOADED, {users: secondUserArray});
-      const result = sut.getAll();
+      const result = store.getAll();
 
       // assert
       expect(result).to.eql(firstUserArray.concat(secondUserArray));
     });
   });
 
-  describe('dehydrate', function() {
-    it('should return serialized state of user store', function() {
-      const userArray = [{id: 1, login: 'test'}];
+  describe('derehydrate', function(){
+    it('dehydrates and rehydrates properly', function() {
+      // arrange
+      store.loadUsers({users: sampleData});
+      const store2 =  new MockDispatcher(StoreToTest).getStore();
 
-      sut.getAll = sinon.stub().returns(userArray);
+      // act
+      store2.rehydrate(store.dehydrate());
 
-      expect(sut.dehydrate()).to.eql({
-        users: userArray
-      });
-    });
-  });
-
-  describe('rehydrate', function() {
-    it('should set the current state from the serialized state', function() {
-      const state = {
-        users: [{id: 2, login: 'test'}]
-      };
-
-      sut.rehydrate(state);
-
-      expect(sut.dehydrate()).to.eql(state);
+      // assert
+      const result = store2.getAll();
+      expect(result).to.be.an('array');
+      expect(result).to.deep.equal(sampleData);
     });
   });
 });

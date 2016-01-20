@@ -7,12 +7,12 @@ class UserStore extends BaseStore {
     this._setUsers([]);
   }
 
-  loadUsersHandler(payload) {
+  loadUsers(payload) {
     this._addUsers(payload.users);
     this.emitChange();
   }
 
-  loadUserHandler(payload) {
+  loadUser(payload) {
     this._addUsers([payload.user]);
     this.emitChange();
   }
@@ -49,8 +49,8 @@ class UserStore extends BaseStore {
 
 UserStore.storeName = 'UserStore';
 UserStore.handlers = {
-  [events.USER_LIST_LOADED]: 'loadUsersHandler',
-  [events.USER_ITEM_LOADED]: 'loadUserHandler'
+  [events.USER_LIST_LOADED]: 'loadUsers',
+  [events.USER_ITEM_LOADED]: 'loadUser'
 };
 
 export default UserStore;

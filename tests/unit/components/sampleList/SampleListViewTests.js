@@ -4,11 +4,11 @@ import { expect } from 'chai';
 import sinon from 'sinon';
 import {ShallowComponent} from 'react-fluxible-utils';
 
-import SampleListView from '../../../../../app/components/sampleList/SampleListView.jsx';
-import Loader from '../../../../../app/components/_common/Loader.jsx';
-import Title from '../../../../../app/components/_common/Title.jsx';
-import SampleStore from '../../../../../app/stores/sampleStore';
-import SampleList from '../../../../../app/components/sampleList/SampleList.jsx';
+import SampleListView from '../../../../app/components/sampleList/SampleListView.jsx';
+import Loader from '../../../../app/components/_common/Loader.jsx';
+import Title from '../../../../app/components/_common/Title.jsx';
+import SampleStore from '../../../../app/stores/sampleStore';
+import SampleList from '../../../../app/components/sampleList/SampleList.jsx';
 
 describe('SampleListView Component', function() {
   const sampleData = [
