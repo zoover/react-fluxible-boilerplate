@@ -1,7 +1,6 @@
 import {expect} from 'chai';
 import StoreToTest from '../../../app/stores/userStore';
 import {MockDispatcher} from 'react-fluxible-utils';
-import events from '../../../app/config/events';
 import sinon from 'sinon';
 
 describe('userStore', function() {
@@ -31,7 +30,7 @@ describe('userStore', function() {
       // arrange
       ;
       const existingId = 'test';
-      dispatcherMock.dispatch(events.USER_LIST_LOADED, {users: sampleData});
+      dispatcherMock.dispatch('USER_LIST_LOADED', {users: sampleData});
 
       // act
       const result = store.getById(existingId);
@@ -47,8 +46,8 @@ describe('userStore', function() {
       const secondUserArray = [{id: 2, login: 'the second user'}];
 
       // act
-      dispatcherMock.dispatch(events.USER_LIST_LOADED, {users: firstUserArray});
-      dispatcherMock.dispatch(events.USER_LIST_LOADED, {users: secondUserArray});
+      dispatcherMock.dispatch('USER_LIST_LOADED', {users: firstUserArray});
+      dispatcherMock.dispatch('USER_LIST_LOADED', {users: secondUserArray});
       const result = store.getAll();
 
       // assert

@@ -7,7 +7,6 @@ A starting point for React/Fluxible applications, using the following stack:
 * [React](https://facebook.github.io/react/)
 * [Fluxible](http://fluxible.io/)
 * [Gulp](http://gulpjs.com/)
-* [Webpack](https://webpack.github.io/)
 
 ## Main Features ##
 
@@ -31,11 +30,7 @@ The application uses ECMAScript 6 syntax where possible.
 To get the application running, run the following commands:
 
 * `npm install` to install dependencies
-* `gulp` to build the application and start the watcher
-* `npm start` to start the server
-
-Right now, building (and watching) the application and serving it are two separate tasks. This might change in the future.
-Also, note that the server is not automatically restarted when the application is rebuilt.
+* `gulp` to build the application and start the development server
 
 ## More Documentation ##
 
