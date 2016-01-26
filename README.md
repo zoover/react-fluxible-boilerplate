@@ -1,6 +1,6 @@
 # React Stack Boilerplate #
 
-A starting point for React/Fluxible applications, using the following stack:
+A boilerplate for React+Fluxible applications, using the following stack:
 
 * [NodeJS](https://nodejs.org)
 * [Express](http://expressjs.com/)
@@ -31,6 +31,7 @@ To get the application running, run the following commands:
 
 * `npm install` to install dependencies
 * `gulp` to build the application and start the development server
+* Go to `http://localhost:3000` in your browser
 
 ## More Documentation ##
 

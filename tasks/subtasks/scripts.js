@@ -40,8 +40,6 @@ function mapError(err) {
       + ': '
       + chalk.yellow(err.message));
   }
-
-  this.end();
 }
 
 function bundleJs(bundler) {
@@ -60,12 +58,11 @@ gulp.task('scripts:watchify', function() {
   bundleJs(bundler);
 
   bundler.on('update', function() {
-    console.log('Watchify: scripts updated');
     bundleJs(bundler);
   });
 
   bundler.on('time', function(time) {
-    console.log('Watchify: scripts bundled in', time / 1000, 'seconds');
+    gutil.log(`Watchify: scripts bundled in ${chalk.cyan(time / 1000)} seconds`);
   });
 });
 
