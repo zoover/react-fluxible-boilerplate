@@ -32,8 +32,8 @@ let Main = React.createClass({
           <Col sm="6">
             <Title><Translate value="general.title"/></Title>
             <ul>
-              <li><NavLink routeName="sampleList"><Translate value="samples.list"/></NavLink></li>
-              <li><NavLink routeName="userList"><Translate value="users.list"/></NavLink></li>
+              <li><NavLink routeName="sampleList"><Translate value="menu.samples"/></NavLink></li>
+              <li><NavLink routeName="userList"><Translate value="menu.users"/></NavLink></li>
             </ul>
           </Col>
           <Col sm="6">

@@ -14,8 +14,8 @@ let UserListView = React.createClass({
   render: function() {
     return (
       <div>
-        <Helmet title={I18n.t('users.list')}/>
-        <Title><Translate value="users.list"/></Title>
+        <Helmet title={I18n.t('users.list', {count: this.props.users.length})}/>
+        <Title><Translate value="users.list" count={this.props.users.length}/></Title>
         <Loader isLoading={this.props.isLoading}>
           <UserList users={this.props.users}/>
         </Loader>

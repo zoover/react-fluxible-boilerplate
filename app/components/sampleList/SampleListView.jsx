@@ -14,8 +14,8 @@ let SampleListView = React.createClass({
   render: function() {
     return (
       <div>
-        <Helmet title={I18n.t('samples.list')}/>
-        <Title><Translate value="samples.list"/></Title>
+        <Helmet title={I18n.t('samples.list', {count: this.props.samples.length})}/>
+        <Title><Translate value="samples.list" count={this.props.samples.length}/></Title>
         <Loader isLoading={this.props.isLoading}>
           <SampleList samples={this.props.samples}/>
         </Loader>
