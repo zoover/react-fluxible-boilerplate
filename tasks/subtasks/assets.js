@@ -6,7 +6,7 @@ const del = require('del'); // used to create gulp tasks that delete files
 const fs = require('fs');
 const realFavicon = require('gulp-real-favicon');
 const change = require('gulp-change');
-const minifyCss = require('gulp-minify-css');
+const cssnano = require('gulp-cssnano');
 const gzip = require('gulp-gzip');
 const json = require('jsonfile');
 const path = require('path');
@@ -30,7 +30,7 @@ gulp.task('assets:styles-production', function() {
     .pipe(sassGlob())
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer('last 2 version'))
-    .pipe(minifyCss())
+    .pipe(cssnano())
     .pipe(gzip())
     .pipe(gulp.dest(config.paths.build_dest));
 });
