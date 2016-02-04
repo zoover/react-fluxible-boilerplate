@@ -1,20 +1,20 @@
-import {ReactSafeRender as React} from 'react-fluxible-utils';
+import { ReactSafeRender as React } from 'react-fluxible-utils';
 import Helmet from 'react-helmet';
-import {connectToStores} from 'react-fluxible-utils';
+import { connectToStores } from 'react-fluxible-utils';
 import Title from '../_common/Title.jsx';
 import Loader from '../_common/Loader.jsx';
 import SampleList from './SampleList.jsx';
-import {I18n, Translate} from 'react-fluxible-i18n';
+import { I18n, Translate } from 'react-fluxible-i18n';
 
 let SampleListView = React.createClass({
   propTypes: {
     samples: React.PropTypes.array,
     isLoading: React.PropTypes.bool.isRequired
   },
-  render: function() {
+  render: function () {
     return (
       <div>
-        <Helmet title={I18n.t('samples.list', {count: this.props.samples.length})}/>
+        <Helmet title={I18n.t('samples.list', { count: this.props.samples.length })}/>
         <Title><Translate value="samples.list" count={this.props.samples.length}/></Title>
         <Loader isLoading={this.props.isLoading}>
           <SampleList samples={this.props.samples}/>

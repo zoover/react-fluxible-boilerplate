@@ -1,5 +1,5 @@
-import {RouteStore} from 'fluxible-router';
-import {I18nStore} from 'react-fluxible-i18n';
+import { RouteStore } from 'fluxible-router';
+import { I18nStore } from 'react-fluxible-i18n';
 import routes from '../config/routes';
 import applicationStore from '../stores/applicationStore';
 import SampleStore from '../stores/sampleStore';

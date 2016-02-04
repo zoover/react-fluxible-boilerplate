@@ -1,7 +1,7 @@
-import {ReactSafeRender as React} from 'react-fluxible-utils';
+import { ReactSafeRender as React } from 'react-fluxible-utils';
 
 const Error = React.createClass({
-  render: function() {
+  render: function () {
     return (
       <html>
         <head>

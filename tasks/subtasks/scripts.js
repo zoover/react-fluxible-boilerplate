@@ -52,30 +52,30 @@ function bundleJs(bundler) {
     .pipe(sourcemaps.write('.'));
 }
 
-gulp.task('scripts:watchify', function() {
+gulp.task('scripts:watchify', function () {
   const args = merge(watchify.args, { debug: true });
-  const bundler = watchify(browserify(config.paths.main_script_src, args)).transform(babelify, {presets: ['es2015', 'react']});
+  const bundler = watchify(browserify(config.paths.main_script_src, args)).transform(babelify);
   bundleJs(bundler);
 
-  bundler.on('update', function() {
+  bundler.on('update', function () {
     bundleJs(bundler);
   });
 
-  bundler.on('time', function(time) {
+  bundler.on('time', function (time) {
     gutil.log(`Watchify: scripts bundled in ${chalk.cyan(time / 1000)} seconds`);
   });
 });
 
 
 // Without watchify
-gulp.task('scripts:browserify', function() {
-  const bundler = browserify(config.paths.main_script_src, { debug: true }).transform(babelify, {presets: ['es2015', 'react']});
+gulp.task('scripts:browserify', function () {
+  const bundler = browserify(config.paths.main_script_src, { debug: true }).transform(babelify);
   return bundleJs(bundler);
 });
 
 // Without sourcemaps
-gulp.task('scripts:browserify-production', function() {
-  const bundler = browserify(config.paths.main_script_src).transform(babelify, {presets: ['es2015', 'react']});
+gulp.task('scripts:browserify-production', function () {
+  const bundler = browserify(config.paths.main_script_src).transform(babelify);
 
   return bundler.bundle()
     .on('error', mapError)

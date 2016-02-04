@@ -1,4 +1,4 @@
-import {ReactSafeRender as React} from 'react-fluxible-utils';
+import { ReactSafeRender as React } from 'react-fluxible-utils';
 
 const Col = React.createClass({
 
@@ -9,18 +9,18 @@ const Col = React.createClass({
     lg: React.PropTypes.string,
     children: React.PropTypes.node
   },
-  getDefaultProps: function() {
+  getDefaultProps: function () {
     return {
       xs: '12'
     };
   },
-  getClassName: function() {
+  getClassName: function () {
     return 'col-xs-' + this.props.xs +
       (this.props.sm ? ' col-sm-' + this.props.sm : '') +
       (this.props.md ? ' col-md-' + this.props.md : '') +
       (this.props.lg ? ' col-lg-' + this.props.lg : '');
   },
-  render: function() {
+  render: function () {
     return (
       <div className={this.getClassName()}>
         {this.props.children}

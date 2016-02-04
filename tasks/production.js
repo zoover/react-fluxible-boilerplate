@@ -7,21 +7,21 @@ const json = require('jsonfile');
 const config = require('./config.js');
 
 // Serve, watch and reload
-gulp.task('production:server', function() {
+gulp.task('production:server', function () {
   // Start the server at the beginning of the task
-  const server = gls('run.js', {env: {NODE_ENV: 'production'}}, false);
+  const server = gls('run.js', { env: { NODE_ENV: 'production' } }, false);
   server.start();
 });
 
 // Task that will build the app. runSequence is used to make sure the build folder is
 // cleaned first. When cleanup is done, all the other tasks will be executed parallel.
-gulp.task('production:build', function(callback) {
+gulp.task('production:build', function (callback) {
   const version = moment().format('YYYYMMDDHHmmss');
   config.paths.build_dest += version + '/';
 
   const productionSettings = json.readFileSync(config.paths.production_config_file);
   productionSettings.assets_version = version;
-  json.writeFileSync(config.paths.production_config_file, productionSettings, {spaces: 2});
+  json.writeFileSync(config.paths.production_config_file, productionSettings, { spaces: 2 });
 
   runSequence(
     'cleanup',

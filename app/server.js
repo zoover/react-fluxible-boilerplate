@@ -1,7 +1,7 @@
 import express from 'express';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import {navigateAction} from 'fluxible-router';
+import { navigateAction } from 'fluxible-router';
 import serialize from 'serialize-javascript';
 import json from 'jsonfile';
 import LayoutComponent from './components/Layout.jsx';
@@ -21,7 +21,7 @@ let gzip = false;
 
 if (server.get('env') === 'testing' || server.get('env') === 'development') {
   server.use(assetsBasePath, express.static('./build'));
-  server.use(require('connect-livereload')({port: require('../tasks/config').live_reload_port}));
+  server.use(require('connect-livereload')({ port: require('../tasks/config').live_reload_port }));
 } else {
   // production mode
   const file = './production.json';
@@ -34,7 +34,7 @@ if (server.get('env') === 'testing' || server.get('env') === 'development') {
 // Middleware Magic!
 server.use(app.getPlugin('FetchrPlugin').getXhrPath(), app.getPlugin('FetchrPlugin').getMiddleware());
 
-server.use(function(req, res /* , next */) {
+server.use(function (req, res /* , next */) {
   const context = app.createContext();
   const actionContext = context.getActionContext();
 
@@ -42,7 +42,7 @@ server.use(function(req, res /* , next */) {
   actionContext.dispatch('SET_LOCALE', 'nl');
   actionContext.dispatch('ASSETS_PATH_LOAD', assetsBasePath);
 
-  actionContext.executeAction(navigateAction, {url: req.url}, ( err ) => {
+  actionContext.executeAction(navigateAction, { url: req.url }, ( err ) => {
     if (err) {
       res.status(err.status ? err.status : '404').send('<!DOCTYPE html>\n' + ReactDOMServer.renderToStaticMarkup(<ErrorComponent/>));
       return;
@@ -66,6 +66,6 @@ server.use(function(req, res /* , next */) {
 
 const port = server.get('env') === 'development' ? 3000 : 8081;
 
-server.listen(port, function() {
+server.listen(port, function () {
   console.log('Listening at port ' + port + ' (env: ' + server.get('env') + ')');
 });

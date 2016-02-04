@@ -9,16 +9,16 @@ const chalk = require('chalk');
 const config = require('./config.js');
 
 // Serve, watch and reload
-gulp.task('dev-server', function(callback) {
+gulp.task('dev-server', function (callback) {
   runSequence('cleanup', ['assets:favicon', 'assets:images-and-fonts', 'assets:styles', 'scripts:watchify'], () => {
     // Start the server at the beginning of the task
-    const server = gls('run.js', {env: {NODE_ENV: 'development'}}, config.live_reload_port);
+    const server = gls('run.js', { env: { NODE_ENV: 'development' } }, config.live_reload_port);
     server.start();
 
     function notifyClient(file) {
       // Check availability of port 3000, to determine if server is up
       function checkServerUp() {
-        portInService(3000, function(up) {
+        portInService(3000, function (up) {
           if (up) {
             server.notify.apply(server, [file]);
           } else {
@@ -34,12 +34,12 @@ gulp.task('dev-server', function(callback) {
       notifyClient(file);
     }
 
-    gulp.watch(['build/**/*'], function(file) {
+    gulp.watch(['build/**/*'], function (file) {
       gutil.log(`Build file '${chalk.cyan(file.path.split(/[\\/]/).pop())}' changed, notifying client ...`);
       notifyClient(file);
     });
 
-    gulp.watch(['app/**/*.js', 'app/**/*.jsx'], function(file) {
+    gulp.watch(['app/**/*.js', 'app/**/*.jsx'], function (file) {
       gutil.log(`Source file '${chalk.cyan(file.path.split(/[\\/]/).pop())}' changed, restarting server ...`);
       restartServer(file);
       return gulp.src(file.path)

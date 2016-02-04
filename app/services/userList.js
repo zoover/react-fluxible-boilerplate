@@ -4,10 +4,10 @@ const userList = {
   // Name param is required
   name: 'userList',
   // CRUD methods below
-  read: function(req, resource, params, config, callback) {
+  read: function (req, resource, params, config, callback) {
     request
       .get('https://api.github.com/users')
-      .end(function(err, response) {
+      .end(function (err, response) {
         callback(err, response.body);
       });
   }

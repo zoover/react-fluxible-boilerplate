@@ -15,7 +15,7 @@ const config = require('../config.js');
 
 // Task for processing static content such as images and fonts. Will just copy
 // the files from source to destination.
-gulp.task('assets:images-and-fonts', function() {
+gulp.task('assets:images-and-fonts', function () {
   gulp.src(config.paths.fonts_src)
     .pipe(gulp.dest(config.paths.build_dest));
   gulp.src(config.paths.images_src)
@@ -25,7 +25,7 @@ gulp.task('assets:images-and-fonts', function() {
 // Task for processing sass files. Uses gulp-sass to create a single css file
 // in the destination folder. Autoprefixer will automatically write prefixes on
 // css for last 2 versions.
-gulp.task('assets:styles-production', function() {
+gulp.task('assets:styles-production', function () {
   return gulp.src(config.paths.main_style_src)
     .pipe(sassGlob())
     .pipe(sass().on('error', sass.logError))
@@ -35,7 +35,7 @@ gulp.task('assets:styles-production', function() {
     .pipe(gulp.dest(config.paths.build_dest));
 });
 
-gulp.task('assets:styles', function() {
+gulp.task('assets:styles', function () {
   return gulp.src(config.paths.main_style_src)
     .pipe(sassGlob())
     .pipe(sass().on('error', sass.logError))
@@ -55,11 +55,11 @@ function processFavicon(assetsBasePath, done) {
       errorOnImageTooSmall: false
     },
     markupFile: config.paths.favicon_data,
-  }, function() {
+  }, function () {
     // Replace existing {fav} block content with newly created tags
     const replaced = '{/* fav */}\n' + JSON.parse(fs.readFileSync(config.paths.favicon_data)).favicon.html_code.replace(/>/g, ' />') + '\n{/* /fav */}';
     gulp.src(config.paths.layout_file)
-      .pipe(change(function(content) {
+      .pipe(change(function (content) {
         const changed = content.replace(/{\/\* fav \*\/}(.|\n)*{\/\* \/fav \*\/}/, replaced);
         return changed;
       }))
@@ -71,12 +71,12 @@ function processFavicon(assetsBasePath, done) {
   });
 }
 
-gulp.task('assets:favicon', function(done) {
+gulp.task('assets:favicon', function (done) {
   const assetsBasePath = '/assets';
   processFavicon(assetsBasePath, done);
 });
 
-gulp.task('assets:favicon-production', function(done) {
+gulp.task('assets:favicon-production', function (done) {
   const productionSettings = json.readFileSync(config.paths.production_config_file);
   const assetsBasePath = productionSettings.assets_base_url + productionSettings.assets_version + '/';
   processFavicon(assetsBasePath, done);

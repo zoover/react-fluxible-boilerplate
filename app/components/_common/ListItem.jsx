@@ -1,5 +1,5 @@
-import {ReactSafeRender as React} from 'react-fluxible-utils';
-import {NavLink} from 'fluxible-router';
+import { ReactSafeRender as React } from 'react-fluxible-utils';
+import { NavLink } from 'fluxible-router';
 
 const ListItem = React.createClass({
   propTypes: {
@@ -7,10 +7,10 @@ const ListItem = React.createClass({
     id: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]).isRequired,
     name: React.PropTypes.string
   },
-  render: function() {
+  render: function () {
     return (
       <li>
-        <NavLink routeName={this.props.route} navParams={{id: this.props.id}}>{this.props.name}</NavLink>
+        <NavLink routeName={this.props.route} navParams={{ id: this.props.id }}>{this.props.name}</NavLink>
       </li>
     );
   }

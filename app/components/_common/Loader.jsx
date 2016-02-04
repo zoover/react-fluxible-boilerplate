@@ -1,5 +1,5 @@
-import {ReactSafeRender as React} from 'react-fluxible-utils';
-import {Translate} from 'react-fluxible-i18n';
+import { ReactSafeRender as React } from 'react-fluxible-utils';
+import { Translate } from 'react-fluxible-i18n';
 
 const Loader = React.createClass({
 
@@ -7,12 +7,12 @@ const Loader = React.createClass({
     isLoading: React.PropTypes.bool.isRequired,
     children: React.PropTypes.node
   },
-  getDefaultProps: function() {
+  getDefaultProps: function () {
     return {
       isLoading: false
     };
   },
-  render: function() {
+  render: function () {
     if (this.props.isLoading) {
       return (
         <div>

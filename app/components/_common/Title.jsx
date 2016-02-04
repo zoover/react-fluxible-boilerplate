@@ -1,11 +1,11 @@
-import {ReactSafeRender as React} from 'react-fluxible-utils';
+import { ReactSafeRender as React } from 'react-fluxible-utils';
 
 const Title = React.createClass({
 
   propTypes: {
     children: React.PropTypes.node
   },
-  render: function() {
+  render: function () {
     return (
       <h1>{this.props.children}</h1>
     );

@@ -4,10 +4,10 @@ const userItem = {
   // Name param is required
   name: 'userItem',
   // CRUD methods below
-  read: function(req, resource, params, config, callback) {
+  read: function (req, resource, params, config, callback) {
     request
       .get('https://api.github.com/users/' + params.id)
-      .end(function(err, response) {
+      .end(function (err, response) {
         callback(err, response.body);
       });
   }
