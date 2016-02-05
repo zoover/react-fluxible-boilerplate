@@ -1,7 +1,11 @@
-import { ReactSafeRender as React } from 'react-fluxible-utils';
+import React from 'react';
 import ListItem from '../_common/ListItem.jsx';
 
 class UserList extends React.Component {
+  static propTypes = {
+    users: React.PropTypes.array,
+  };
+
   render() {
     const userRender = (user) => (
       <ListItem key={user.id} route="userItem" id={user.login} name={user.login}/>
@@ -11,9 +15,5 @@ class UserList extends React.Component {
     );
   }
 }
-
-UserList.propTypes = {
-  users: React.PropTypes.array,
-};
 
 export default UserList;

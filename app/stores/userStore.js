@@ -1,6 +1,12 @@
 import BaseStore from 'fluxible/addons/BaseStore';
 
-class UserStore extends BaseStore {
+export default class UserStore extends BaseStore {
+  static storeName = 'UserStore';
+  static handlers = {
+    ['USER_LIST_LOADED']: 'loadUsers',
+    ['USER_ITEM_LOADED']: 'loadUser',
+  };
+
   constructor(dispatcher) {
     super(dispatcher);
     this._setUsers([]);
@@ -26,7 +32,7 @@ class UserStore extends BaseStore {
 
   dehydrate() {
     return {
-      users: this.getAll()
+      users: this.getAll(),
     };
   }
 
@@ -45,11 +51,3 @@ class UserStore extends BaseStore {
     });
   }
 }
-
-UserStore.storeName = 'UserStore';
-UserStore.handlers = {
-  ['USER_LIST_LOADED']: 'loadUsers',
-  ['USER_ITEM_LOADED']: 'loadUser'
-};
-
-export default UserStore;

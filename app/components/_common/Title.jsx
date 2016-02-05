@@ -1,15 +1,15 @@
-import { ReactSafeRender as React } from 'react-fluxible-utils';
+import React from 'react';
 
-const Title = React.createClass({
+class Title extends React.Component {
+  static propTypes = {
+    children: React.PropTypes.node,
+  };
 
-  propTypes: {
-    children: React.PropTypes.node
-  },
-  render: function () {
+  render() {
     return (
       <h1>{this.props.children}</h1>
     );
   }
-});
+}
 
 export default Title;

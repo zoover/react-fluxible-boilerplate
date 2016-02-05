@@ -1,18 +1,18 @@
-import { ReactSafeRender as React } from 'react-fluxible-utils';
+import React from 'react';
 
-const Container = React.createClass({
-
-  propTypes: {
+class Container extends React.Component {
+  static propTypes = {
     fluid: React.PropTypes.bool,
-    children: React.PropTypes.node
-  },
-  render: function () {
+    children: React.PropTypes.node,
+  };
+
+  render() {
     return (
       <div className={this.props.fluid ? 'container-fluid' : 'container'}>
         {this.props.children}
       </div>
     );
   }
-});
+}
 
 export default Container;

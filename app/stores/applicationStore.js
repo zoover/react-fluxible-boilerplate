@@ -1,6 +1,11 @@
 import BaseStore from 'fluxible/addons/BaseStore';
 
-class ApplicationStore extends BaseStore {
+export default class ApplicationStore extends BaseStore {
+  static storeName = 'ApplicationStore';
+  static handlers = {
+    ['ASSETS_PATH_LOAD']: 'loadAssetsPath',
+  };
+
   constructor(dispatcher) {
     super(dispatcher);
     this.assetsPath = null;
@@ -25,11 +30,3 @@ class ApplicationStore extends BaseStore {
     this.assetsPath = state.assetsPath;
   }
 }
-
-ApplicationStore.storeName = 'ApplicationStore';
-
-ApplicationStore.handlers = {
-  'ASSETS_PATH_LOAD': 'loadAssetsPath',
-};
-
-export default ApplicationStore;

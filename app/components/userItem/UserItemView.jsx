@@ -1,4 +1,4 @@
-import { ReactSafeRender as React } from 'react-fluxible-utils';
+import React from 'react';
 import Helmet from 'react-helmet';
 import { NavLink } from 'fluxible-router';
 import { connectToStores } from 'react-fluxible-utils';
@@ -8,6 +8,11 @@ import Title from '../_common/Title.jsx';
 import { Translate } from 'react-fluxible-i18n';
 
 class UserItemView extends React.Component {
+  static propTypes = {
+    user: React.PropTypes.object,
+    isLoading: React.PropTypes.bool.isRequired,
+  };
+
   render() {
     let content;
     if (!this.props.user) {
@@ -31,11 +36,6 @@ class UserItemView extends React.Component {
     );
   }
 }
-
-UserItemView.propTypes = {
-  user: React.PropTypes.object,
-  isLoading: React.PropTypes.bool.isRequired,
-};
 
 UserItemView = connectToStores(UserItemView, ['UserStore'], (context, props) => ({
   user: context.getStore('UserStore').getById(props.id),

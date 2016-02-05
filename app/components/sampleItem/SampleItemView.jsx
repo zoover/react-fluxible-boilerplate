@@ -1,4 +1,4 @@
-import { ReactSafeRender as React } from 'react-fluxible-utils';
+import React from 'react';
 import Helmet from 'react-helmet';
 import { NavLink } from 'fluxible-router';
 import { connectToStores } from 'react-fluxible-utils';
@@ -7,12 +7,13 @@ import NotFound from '../_common/NotFound.jsx';
 import Title from '../_common/Title.jsx';
 import { Translate } from 'react-fluxible-i18n';
 
-let SampleItemView = React.createClass({
-  propTypes: {
+class SampleItemView extends React.Component {
+  static propTypes = {
     sample: React.PropTypes.object,
-    isLoading: React.PropTypes.bool.isRequired
-  },
-  render: function () {
+    isLoading: React.PropTypes.bool.isRequired,
+  };
+
+  render() {
     let content;
     if (!this.props.sample) {
       content = <NotFound />;
@@ -34,10 +35,10 @@ let SampleItemView = React.createClass({
       </div>
     );
   }
-});
+}
 
 SampleItemView = connectToStores(SampleItemView, ['SampleStore'], (context, props) => ({
-  sample: context.getStore('SampleStore').getById(parseInt(props.id, 10))
+  sample: context.getStore('SampleStore').getById(parseInt(props.id, 10)),
 }));
 
 export default SampleItemView;

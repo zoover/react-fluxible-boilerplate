@@ -1,7 +1,7 @@
-import { ReactSafeRender as React } from 'react-fluxible-utils';
+import React from 'react';
 
-const Error = React.createClass({
-  render: function () {
+class Error extends React.Component {
+  render() {
     return (
       <html>
         <head>
@@ -17,6 +17,6 @@ const Error = React.createClass({
       </html>
     );
   }
-});
+}
 
 export default Error;

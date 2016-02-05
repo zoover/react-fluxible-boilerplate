@@ -1,6 +1,12 @@
 import BaseStore from 'fluxible/addons/BaseStore';
 
-class SampleStore extends BaseStore {
+export default class SampleStore extends BaseStore {
+  static storeName = 'SampleStore';
+  static handlers = {
+    ['SAMPLE_LIST_LOADED']: 'loadSamplesHandler',
+    ['SAMPLE_ITEM_LOADED']: 'loadSampleHandler',
+  };
+
   constructor(dispatcher) {
     super(dispatcher);
     this._setSamples([]);
@@ -26,7 +32,7 @@ class SampleStore extends BaseStore {
 
   dehydrate() {
     return {
-      samples: this.getAll()
+      samples: this.getAll(),
     };
   }
 
@@ -45,11 +51,3 @@ class SampleStore extends BaseStore {
     });
   }
 }
-
-SampleStore.storeName = 'SampleStore';
-SampleStore.handlers = {
-  ['SAMPLE_LIST_LOADED']: 'loadSamplesHandler',
-  ['SAMPLE_ITEM_LOADED']: 'loadSampleHandler'
-};
-
-export default SampleStore;

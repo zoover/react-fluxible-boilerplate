@@ -1,4 +1,4 @@
-import { ReactSafeRender as React } from 'react-fluxible-utils';
+import React from 'react';
 import Helmet from 'react-helmet';
 import { connectToStores } from 'react-fluxible-utils';
 import Title from '../_common/Title.jsx';
@@ -7,6 +7,11 @@ import UserList from './UserList.jsx';
 import { I18n, Translate } from 'react-fluxible-i18n';
 
 class UserListView extends React.Component {
+  static propTypes = {
+    users: React.PropTypes.array,
+    isLoading: React.PropTypes.bool.isRequired,
+  };
+
   render() {
     return (
       <div>
@@ -19,11 +24,6 @@ class UserListView extends React.Component {
     );
   }
 }
-
-UserListView.propTypes = {
-  users: React.PropTypes.array,
-  isLoading: React.PropTypes.bool.isRequired,
-};
 
 UserListView = connectToStores(UserListView, ['UserStore'], (context) => ({
   users: context.getStore('UserStore').getAll(),

@@ -1,17 +1,17 @@
-import { ReactSafeRender as React } from 'react-fluxible-utils';
+import React from 'react';
 
-const Row = React.createClass({
+class Row extends React.Component {
+  static propTypes = {
+    children: React.PropTypes.node,
+  };
 
-  propTypes: {
-    children: React.PropTypes.node
-  },
-  render: function () {
+  render() {
     return (
       <div className="row">
         {this.props.children}
       </div>
     );
   }
-});
+}
 
 export default Row;

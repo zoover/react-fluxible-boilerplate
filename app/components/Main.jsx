@@ -1,4 +1,4 @@
-import { ReactSafeRender as React } from 'react-fluxible-utils';
+import React from 'react';
 import Helmet from 'react-helmet';
 import { NavLink } from 'fluxible-router';
 import { handleHistory } from 'fluxible-router';
@@ -9,17 +9,19 @@ import Col from './_common/Col.jsx';
 import Title from './_common/Title.jsx';
 import { I18n, Translate } from 'react-fluxible-i18n';
 
-let Main = React.createClass({
-  propTypes: {
+class Main extends React.Component {
+  static propTypes = {
     currentRoute: React.PropTypes.object,
     context: React.PropTypes.object.isRequired,
-    isNavigateComplete: React.PropTypes.bool
-  },
-  contextTypes: {
+    isNavigateComplete: React.PropTypes.bool,
+  };
+
+  static contextTypes = {
     getStore: React.PropTypes.func.isRequired,
-    executeAction: React.PropTypes.func.isRequired
-  },
-  render: function () {
+    executeAction: React.PropTypes.func.isRequired,
+  };
+
+  render() {
     const Handler = this.props.currentRoute.get('handler');
     const params = this.props.currentRoute.get('params').toJS();
     return (
@@ -27,7 +29,8 @@ let Main = React.createClass({
         <Row>
           <Helmet
             title={I18n.t('general.title')}
-            meta={[{ name: 'description', content: I18n.t('general.description') }]} />
+            meta={[{ name: 'description', content: I18n.t('general.description') }]}
+          />
 
           <Col sm="6">
             <Title><Translate value="general.title"/></Title>
@@ -43,7 +46,7 @@ let Main = React.createClass({
       </Container>
     );
   }
-});
+}
 
 Main = handleHistory(Main);
 Main = provideContext(Main);

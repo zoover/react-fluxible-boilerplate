@@ -1,18 +1,17 @@
-import { ReactSafeRender as React } from 'react-fluxible-utils';
+import React from 'react';
 import { Translate } from 'react-fluxible-i18n';
 
-const Loader = React.createClass({
-
-  propTypes: {
+class Loader extends React.Component {
+  static propTypes = {
     isLoading: React.PropTypes.bool.isRequired,
-    children: React.PropTypes.node
-  },
-  getDefaultProps: function () {
-    return {
-      isLoading: false
-    };
-  },
-  render: function () {
+    children: React.PropTypes.node,
+  };
+
+  static defaultProps = {
+    isLoading: false,
+  };
+
+  render() {
     if (this.props.isLoading) {
       return (
         <div>
@@ -26,6 +25,6 @@ const Loader = React.createClass({
       </div>
     );
   }
-});
+}
 
 export default Loader;
