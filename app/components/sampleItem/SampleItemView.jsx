@@ -5,7 +5,7 @@ import {connectToStores} from 'react-fluxible-utils';
 import Loader from '../_common/Loader.jsx';
 import NotFound from '../_common/NotFound.jsx';
 import Title from '../_common/Title.jsx';
-import {Translate} from 'react-fluxible-i18n';
+import {Translate} from 'react-i18n-components';
 
 let SampleItemView = React.createClass({
   propTypes: {

@@ -10,7 +10,6 @@ import app from './app';
 // In order th enable sharing services between client and server, we need
 // to make them available by registering services on the app
 import registerServices from './config/services';
-import translations from './config/locales';
 
 registerServices(app);
 
@@ -38,8 +37,6 @@ server.use(function(req, res /* , next */) {
   const context = app.createContext();
   const actionContext = context.getActionContext();
 
-  actionContext.dispatch('LOAD_TRANSLATIONS', translations);
-  actionContext.dispatch('SET_LOCALE', 'nl');
   actionContext.dispatch('ASSETS_PATH_LOAD', assetsBasePath);
 
   actionContext.executeAction(navigateAction, {url: req.url}, ( err ) => {
