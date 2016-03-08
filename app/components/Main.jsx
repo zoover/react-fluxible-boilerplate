@@ -28,7 +28,6 @@ let Main = React.createClass({
           <Helmet
             title={I18n.t('general.title')}
             meta={[{name: 'description', content: I18n.t('general.description')}]} />
-
           <Col sm="6">
             <Title><Translate value="general.title"/></Title>
             <ul>

@@ -4,7 +4,7 @@ import {connectToStores} from 'react-fluxible-utils';
 import Title from '../_common/Title.jsx';
 import Loader from '../_common/Loader.jsx';
 import UserList from './UserList.jsx';
-import {I18n, Translate} from 'react-fluxible-i18n';
+import {I18n, Translate, Localize} from 'react-fluxible-i18n';
 
 let UserListView = React.createClass({
   propTypes: {
@@ -16,6 +16,7 @@ let UserListView = React.createClass({
       <div>
         <Helmet title={I18n.t('users.list', {count: this.props.users.length})}/>
         <Title><Translate value="users.list" count={this.props.users.length}/></Title>
+        <p><Localize value={new Date()} dateFormat="date.long"/></p>
         <Loader isLoading={this.props.isLoading}>
           <UserList users={this.props.users}/>
         </Loader>

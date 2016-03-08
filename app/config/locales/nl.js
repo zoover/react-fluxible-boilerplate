@@ -18,5 +18,8 @@ export default {
     list: 'Lijst van %{count} gebruikers',
     id: 'Gebruiker ID',
     back_to_list: 'Terug naar de lijst van gebruikers'
+  },
+  date: {
+    long: 'D MMMM YYYY'
   }
 };
