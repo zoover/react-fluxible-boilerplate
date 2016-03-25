@@ -7,7 +7,7 @@ import Container from './_common/Container.jsx';
 import Row from './_common/Row.jsx';
 import Col from './_common/Col.jsx';
 import Title from './_common/Title.jsx';
-import {I18n, Translate} from 'react-i18n-components';
+import {I18n, Translate} from 'react-i18nify';
 
 let Main = React.createClass({
   propTypes: {

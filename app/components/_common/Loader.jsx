@@ -1,5 +1,5 @@
 import {ReactSafeRender as React} from 'react-fluxible-utils';
-import {Translate} from 'react-i18n-components';
+import {Translate} from 'react-i18nify';
 
 const Loader = React.createClass({
 
