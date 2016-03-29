@@ -4,7 +4,7 @@ import {connectToStores} from 'react-fluxible-utils';
 import Title from '../_common/Title.jsx';
 import Loader from '../_common/Loader.jsx';
 import SampleList from './SampleList.jsx';
-import {I18n, Translate, Localize} from 'react-i18nify';
+import {I18n, Translate, Localize} from 'react-fluxible-i18n';
 
 let SampleListView = React.createClass({
   propTypes: {

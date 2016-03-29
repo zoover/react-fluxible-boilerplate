@@ -4,8 +4,6 @@ import MainComponent from './components/Main.jsx';
 // This will enable to share the same services/api calls between server and client
 import fetchr from 'fluxible-plugin-fetchr';
 import registerStores from './config/stores';
-import { I18n } from 'react-i18nify';
-import translations from './config/locales';
 
 const fetchrInstance = fetchr({
   // Internal name to make the calls,
@@ -15,9 +13,6 @@ const fetchrInstance = fetchr({
 const app = new Fluxible({
   component: MainComponent
 });
-
-I18n.loadTranslations(translations);
-I18n.setLocale('nl');
 
 registerStores(app);
 

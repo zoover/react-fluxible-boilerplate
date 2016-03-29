@@ -7,7 +7,7 @@ import Container from './_common/Container.jsx';
 import Row from './_common/Row.jsx';
 import Col from './_common/Col.jsx';
 import Title from './_common/Title.jsx';
-import {I18n, Translate} from 'react-i18nify';
+import {I18n, Translate} from 'react-fluxible-i18n';
 
 let Main = React.createClass({
   propTypes: {
