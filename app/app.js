@@ -16,7 +16,7 @@ const app = new Fluxible({
   component: MainComponent
 });
 
-I18n.setTranslations(translations);
+I18n.loadTranslations(translations);
 I18n.setLocale('nl');
 
 registerStores(app);

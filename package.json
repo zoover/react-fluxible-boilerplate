@@ -39,8 +39,7 @@
     "react-dom": "^0.14.2",
     "react-fluxible-utils": "^0.1.8",
     "react-helmet": "^2.2.0",
-    "react-i18n-components": "^1.0.0",
-    "react-i18nify": "^1.0.2",
+    "react-i18nify": "^1.0.4",
     "serialize-javascript": "^1.1.2",
     "superagent": "^1.4.0"
   },
